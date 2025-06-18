@@ -1,0 +1,116 @@
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #212529;
+    --card-bg-color: #ffffff;
+    --border-color: #dee2e6;
+    --pill-bg-color: #fff;
+    --pill-border-color: #dee2e6;
+    --pill-hover-bg-color: #f1f1f1;
+    --pill-checked-bg-color: #6f4e37;
+    --pill-checked-color: #ffffff;
+    --accordion-btn-bg: #f7f7f7;
+    --input-bg-color: #fff;
+}
+
+body.dark-mode {
+    --bg-color: #212529;
+    --text-color: #f8f9fa;
+    --card-bg-color: #343a40;
+    --border-color: #495057;
+    --pill-bg-color: #495057;
+    --pill-border-color: #6c757d;
+    --pill-hover-bg-color: #5a6268;
+    --pill-checked-bg-color: #a18069;
+    --pill-checked-color: #ffffff;
+    --accordion-btn-bg: #2c3034;
+    --input-bg-color: #343a40;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.accordion-item, .accordion-button {
+    background-color: var(--card-bg-color) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--accordion-btn-bg) !important;
+    font-weight: 600;
+}
+
+.form-control, .form-select, #result-prompt, .form-control:focus {
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.form-control::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.form-select, .form-control:focus, #result-prompt:focus {
+    box-shadow: 0 0 0 0.25rem rgba(111, 78, 55, 0.25);
+}
+
+.container {
+    max-width: 800px;
+}
+.accordion-button:not(.collapsed) {
+    color: #000;
+    background-color: #e9ecef;
+}
+.option-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.option-pills .form-check {
+    padding-left: 0;
+}
+.option-pills .form-check-input {
+    display: none;
+}
+.option-pills .form-check-label {
+    padding: 8px 16px;
+    border-radius: 50px;
+    background-color: var(--pill-bg-color);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid var(--pill-border-color);
+    font-weight: 500;
+    color: var(--text-color);
+}
+.option-pills .form-check-input:checked + .form-check-label {
+    background-color: var(--pill-checked-bg-color);
+    color: var(--pill-checked-color);
+    border-color: var(--pill-checked-bg-color);
+}
+.option-pills .form-check-label:hover {
+    background-color: var(--pill-hover-bg-color);
+}
+.custom-input-group {
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.custom-input-group .form-check-input + .form-check-label {
+     flex-shrink: 0;
+}
+
+#theme-switcher .form-check-input {
+    width: 3em;
+    height: 1.5em;
+    cursor: pointer;
+}
+
+#result-container {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+} 

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Prompt Generator Iklan Produk</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📸</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="d-flex justify-content-center align-items-center position-relative mb-5 text-center">
+            <div>
+                <h1 class="display-5">📸 Ultimate Prompt Generator</h1>
+                <p class="lead">Buat prompt iklan foto produk F&B impianmu!</p>
+            </div>
+            <div class="form-check form-switch position-absolute" style="top: 10px; right: 10px;" id="theme-switcher">
+                <input class="form-check-input" type="checkbox" role="switch" id="theme-toggle">
+                <label class="form-check-label" for="theme-toggle">🌙</label>
+            </div>
+        </div>
+
+        <form id="prompt-form">
+            <div class="accordion" id="promptAccordion">
+
+                <!-- 1. Nama & Jenis Produk -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            1. 📝 Nama & Jenis Produk
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#promptAccordion">
+                        <div class="accordion-body">
+                            <div class="mb-3">
+                                <label for="product_category" class="form-label fw-bold">Pilih Kategori Produk:</label>
+                                <select class="form-select" id="product_category">
+                                    <option value="kategori_signature" selected>☕ Kategori Signature / Best Seller</option>
+                                    <option value="kategori_rempah">🌿 Kategori Rempah & Tradisional</option>
+                                    <option value="kategori_nonkopi">🍨 Kategori Non-Kopi & Kids Friendly</option>
+                                    <option value="kategori_kekinian">🍹 Kategori Es Kopi Kekinian</option>
+                                    <option value="kategori_kreatif">🌈 Nama Serba Unik & Kreatif</option>
+                                    <option value="kategori_sehat">🌱 Kategori Sehat & Sadar</option>
+                                    <option value="kategori_fusion">🧪 Kategori Fusion & Eksperimental</option>
+                                    <option value="kategori_makanan_ringan">🍟 Makanan Ringan Favorit & Kekinian</option>
+                                    <option value="kategori_makanan_berat">🍛 Makanan Berat Favorit untuk UMKM</option>
+                                    <option value="kategori_paket_combo">📦 Paket Combo (Hemat & Menguntungkan)</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Nama Produk (Pilih Opsi atau Isi Sendiri):</label>
+                                <div id="product_name_options" class="option-pills">
+                                    <!-- Opsi nama produk akan diisi oleh JavaScript -->
+                                </div>
+                                <div class="form-check custom-input-group mt-2">
+                                     <input class="form-check-input" type="radio" name="nama_produk_radio" id="nama_produk_custom_radio" value="custom">
+                                     <label class="form-check-label" for="nama_produk_custom_radio">Lainnya:</label>
+                                     <input type="text" class="form-control form-control-sm" id="nama_produk_custom_text" placeholder="Custom Nama Produk">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="jenis_produk" class="form-label fw-bold">Jenis/Kategori Teks (Otomatis/Kustom):</label>
+                                <input type="text" class="form-control" id="jenis_produk" placeholder="Deskripsi produk akan muncul di sini...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Gaya Visual -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            2. 🎨 Gaya Visual (Aesthetic Style)
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#promptAccordion">
+                        <div class="accordion-body option-pills">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="gaya_visual" id="gaya_visual1" value="Rustic Elegan (meja kayu tua, tone hangat)" data-english-value="Elegant Rustic (old wooden table, warm tones)" checked><label class="form-check-label" for="gaya_visual1">Rustic Elegan</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="gaya_visual" id="gaya_visual2" value="Clean Minimalist (white background, simple layout)" data-english-value="Clean Minimalist (white background, simple layout)"><label class="form-check-label" for="gaya_visual2">Clean Minimalist</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="gaya_visual" id="gaya_visual3" value="Japandi (perpaduan Jepang-Scandinavia)" data-english-value="Japandi (Japanese-Scandinavian fusion)"><label class="form-check-label" for="gaya_visual3">Japandi</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="gaya_visual" id="gaya_visual4" value="Modern Industrial (tone abu, metal, edgy)" data-english-value="Modern Industrial (gray tones, metal, edgy)"><label class="form-check-label" for="gaya_visual4">Modern Industrial</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="gaya_visual" id="gaya_visual5" value="Cozy Boho (karpet rajut, warm tone, natural)" data-english-value="Cozy Boho (woven rugs, warm tones, natural)"><label class="form-check-label" for="gaya_visual5">Cozy Boho</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="gaya_visual" id="gaya_visual6" value="Tropical Vibes (tanaman hijau, warna cerah)" data-english-value="Tropical Vibes (green plants, bright colors)"><label class="form-check-label" for="gaya_visual6">Tropical Vibes</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="gaya_visual" id="gaya_visual7" value="Street Style (di jalanan, vibe urban)" data-english-value="Street Style (on the street, urban vibe)"><label class="form-check-label" for="gaya_visual7">Street Style</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="gaya_visual" id="gaya_visual8" value="Dark Moody (gelap, dramatis, luxury)" data-english-value="Dark & Moody (dark, dramatic, luxury)"><label class="form-check-label" for="gaya_visual8">Dark Moody</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="gaya_visual" id="gaya_visual9" value="Cafe Aesthetic (dengan suasana coffee shop real)" data-english-value="Cafe Aesthetic (with a real coffee shop atmosphere)"><label class="form-check-label" for="gaya_visual9">Cafe Aesthetic</label></div>
+                             <div class="form-check custom-input-group mt-2">
+                                <input class="form-check-input" type="radio" name="gaya_visual" id="gaya_visual_custom_radio" value="custom"><label class="form-check-label" for="gaya_visual_custom_radio">Lainnya:</label>
+                                <input type="text" class="form-control form-control-sm" id="gaya_visual_custom_text" placeholder="Custom Input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Lokasi / Latar Tempat -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                           3. 🗺️ Lokasi / Latar Tempat
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#promptAccordion">
+                        <div class="accordion-body option-pills">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lokasi" id="lokasi1" value="di atas meja kayu dekat jendela" data-english-value="on a wooden table near a window" checked><label class="form-check-label" for="lokasi1">Dekat Jendela</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lokasi" id="lokasi2" value="di atas meja marmer putih outdoor" data-english-value="on an outdoor white marble table"><label class="form-check-label" for="lokasi2">Meja Marmer Outdoor</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lokasi" id="lokasi3" value="di coffee bar industrial" data-english-value="at an industrial coffee bar"><label class="form-check-label" for="lokasi3">Coffee Bar Industrial</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lokasi" id="lokasi4" value="di dapur aesthetic" data-english-value="in an aesthetic kitchen"><label class="form-check-label" for="lokasi4">Dapur Aesthetic</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lokasi" id="lokasi5" value="background polos beige/pastel" data-english-value="plain beige/pastel background"><label class="form-check-label" for="lokasi5">Background Polos</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lokasi" id="lokasi6" value="di balkon dengan tanaman" data-english-value="on a balcony with plants"><label class="form-check-label" for="lokasi6">Balkon</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lokasi" id="lokasi7" value="di rak pajangan" data-english-value="on a display shelf"><label class="form-check-label" for="lokasi7">Rak Pajangan</label></div>
+                            <div class="form-check custom-input-group mt-2">
+                                <input class="form-check-input" type="radio" name="lokasi" id="lokasi_custom_radio" value="custom"><label class="form-check-label" for="lokasi_custom_radio">Lainnya:</label>
+                                <input type="text" class="form-control form-control-sm" id="lokasi_custom_text" placeholder="Custom Input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Aksesoris / Properti Tambahan -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                           4. 🌿 Aksesoris / Properti Tambahan
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#promptAccordion">
+                        <div class="accordion-body option-pills">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="aksesoris" id="aksesoris1" value="bahan baku produk (daun teh, biji wijen, dll)" data-english-value="product's raw ingredients (e.g., tea leaves, sesame seeds)" checked><label class="form-check-label" for="aksesoris1">Bahan Baku</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="aksesoris" id="aksesoris2" value="potongan buah segar (lemon, stroberi, dll)" data-english-value="fresh fruit slices (e.g., lemon, strawberry)"><label class="form-check-label" for="aksesoris2">Potongan Buah</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="aksesoris" id="aksesoris3" value="taburan garnish (keju parut, peterseli, dll)" data-english-value="sprinkled garnish (e.g., grated cheese, parsley)"><label class="form-check-label" for="aksesoris3">Taburan/Garnish</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="aksesoris" id="aksesoris4" value="tanaman hias/vas" data-english-value="decorative plants/vase"><label class="form-check-label" for="aksesoris4">Tanaman Hias</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="aksesoris" id="aksesoris5" value="bunga kering/rempah" data-english-value="dried flowers/spices"><label class="form-check-label" for="aksesoris5">Bunga Kering/Rempah</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="aksesoris" id="aksesoris6" value="buku/majalah" data-english-value="book/magazine"><label class="form-check-label" for="aksesoris6">Buku/Majalah</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="aksesoris" id="aksesoris7" value="napkin/kain alas" data-english-value="napkin/cloth placemat"><label class="form-check-label" for="aksesoris7">Napkin/Kain</label></div>
+                            <div class="form-check custom-input-group mt-2">
+                                <input class="form-check-input" type="radio" name="aksesoris" id="aksesoris_custom_radio" value="custom"><label class="form-check-label" for="aksesoris_custom_radio">Lainnya:</label>
+                                <input type="text" class="form-control form-control-sm" id="aksesoris_custom_text" placeholder="Custom Input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Wadah / Kemasan -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                           5. 🥡 Wadah / Kemasan
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#promptAccordion">
+                        <div class="accordion-body option-pills">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="wadah" id="wadah1" value="Gelas Kaca Bening" data-english-value="Clear Glass" checked><label class="form-check-label" for="wadah1">Gelas Kaca</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="wadah" id="wadah2" value="Cup Plastik 12 oz" data-english-value="12 oz Plastic Cup"><label class="form-check-label" for="wadah2">Cup 12 oz</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="wadah" id="wadah3" value="Cup Plastik 16 oz" data-english-value="16 oz Plastic Cup"><label class="form-check-label" for="wadah3">Cup 16 oz</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="wadah" id="wadah4" value="Cup Plastik 22 oz" data-english-value="22 oz Plastic Cup"><label class="form-check-label" for="wadah4">Cup 22 oz</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="wadah" id="wadah5" value="Mangkok Keramik Putih" data-english-value="White Ceramic Bowl"><label class="form-check-label" for="wadah5">Mangkok Keramik</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="wadah" id="wadah6" value="Botol Kaca" data-english-value="Glass Bottle"><label class="form-check-label" for="wadah6">Botol Kaca</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="wadah" id="wadah7" value="Piring Saji Bundar" data-english-value="Round Serving Plate"><label class="form-check-label" for="wadah7">Piring Saji</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="wadah" id="wadah8" value="disajikan tanpa wadah spesifik" data-english-value="served without a specific container"><label class="form-check-label" for="wadah8">Tanpa Wadah</label></div>
+                            <div class="form-check custom-input-group mt-2">
+                                <input class="form-check-input" type="radio" name="wadah" id="wadah_custom_radio" value="custom"><label class="form-check-label" for="wadah_custom_radio">Lainnya:</label>
+                                <input type="text" class="form-control form-control-sm" id="wadah_custom_text" placeholder="Custom Input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Model (Opsional) -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                           6. 👤 Model (Opsional)
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#promptAccordion">
+                        <div class="accordion-body option-pills">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="model" id="model1" value="fokus hanya pada produk" data-english-value="focusing solely on the product" checked><label class="form-check-label" for="model1">Tanpa Model</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="model" id="model2" value="tangan memegang produk" data-english-value="hands holding the product"><label class="form-check-label" for="model2">Tangan Memegang Produk</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="model" id="model3" value="seseorang menikmati produk" data-english-value="a person enjoying the product"><label class="form-check-label" for="model3">Orang Menikmati Produk</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="model" id="model4" value="chef/pembuat produk sedang beraksi" data-english-value="a chef/creator in action with the product"><label class="form-check-label" for="model4">Pembuat Produk Beraksi</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="model" id="model5" value="pasangan menikmati produk bersama" data-english-value="a couple enjoying the product together"><label class="form-check-label" for="model5">Pasangan</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="model" id="model6" value="pelanggan di cafe/resto" data-english-value="a customer in a cafe/restaurant"><label class="form-check-label" for="model6">Pelanggan di Resto</label></div>
+                            <div class="form-check custom-input-group mt-2">
+                                <input class="form-check-input" type="radio" name="model" id="model_custom_radio" value="custom"><label class="form-check-label" for="model_custom_radio">Lainnya:</label>
+                                <input type="text" class="form-control form-control-sm" id="model_custom_text" placeholder="Custom Input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- 7. Cahaya / Lighting -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                           7. 💡 Cahaya / Lighting
+                        </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#promptAccordion">
+                        <div class="accordion-body option-pills">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="cahaya" id="cahaya1" value="natural light dari samping" data-english-value="natural side lighting" checked><label class="form-check-label" for="cahaya1">Natural Light</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="cahaya" id="cahaya2" value="studio softbox" data-english-value="studio softbox lighting"><label class="form-check-label" for="cahaya2">Studio Softbox</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="cahaya" id="cahaya3" value="backlight tembus cahaya" data-english-value="translucent backlight"><label class="form-check-label" for="cahaya3">Backlight</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="cahaya" id="cahaya4" value="dramatic shadow" data-english-value="dramatic shadow"><label class="form-check-label" for="cahaya4">Dramatic Shadow</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="cahaya" id="cahaya5" value="golden hour light" data-english-value="golden hour light"><label class="form-check-label" for="cahaya5">Golden Hour</label></div>
+                            <div class="form-check custom-input-group mt-2">
+                                <input class="form-check-input" type="radio" name="cahaya" id="cahaya_custom_radio" value="custom"><label class="form-check-label" for="cahaya_custom_radio">Lainnya:</label>
+                                <input type="text" class="form-control form-control-sm" id="cahaya_custom_text" placeholder="Custom Input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Posisi & Angle Produk -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                           8. 📸 Posisi & Angle Produk
+                        </button>
+                    </h2>
+                    <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#promptAccordion">
+                        <div class="accordion-body option-pills">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="posisi" id="posisi1" value="flat lay dari atas" data-english-value="flat lay from above (top-down view)" checked><label class="form-check-label" for="posisi1">Flat Lay (Top-Down)</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="posisi" id="posisi2" value="diagonal 45° close-up" data-english-value="45° diagonal close-up"><label class="form-check-label" for="posisi2">45° Close-up</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="posisi" id="posisi3" value="eye-level" data-english-value="eye-level shot"><label class="form-check-label" for="posisi3">Eye-Level</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="posisi" id="posisi4" value="dipegang oleh tangan" data-english-value="held by hand"><label class="form-check-label" for="posisi4">Dipegang Tangan</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="posisi" id="posisi5" value="fokus ke logo" data-english-value="focused on the logo"><label class="form-check-label" for="posisi5">Fokus Logo</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="posisi" id="posisi6" value="produk di tengah" data-english-value="product in the center"><label class="form-check-label" for="posisi6">Produk di Tengah</label></div>
+                            <div class="form-check custom-input-group mt-2">
+                                <input class="form-check-input" type="radio" name="posisi" id="posisi_custom_radio" value="custom"><label class="form-check-label" for="posisi_custom_radio">Lainnya:</label>
+                                <input type="text" class="form-control form-control-sm" id="posisi_custom_text" placeholder="Custom Input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- 9. Info Tambahan -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                           9. 🏷️ Info Tambahan (Logo, Harga, dll)
+                        </button>
+                    </h2>
+                    <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#promptAccordion">
+                        <div class="accordion-body">
+                            <!-- Logo -->
+                            <div class="mb-3">
+                                <label for="logo_upload" class="form-label fw-bold">Upload logo PNG transparan</label>
+                                <input class="form-control" type="file" id="logo_upload" accept=".png">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Letak logo:</label>
+                                <div class="option-pills">
+                                    <div class="form-check"><input class="form-check-input" type="radio" name="letak_logo" id="letak_logo1" value="di tengah bawah" data-english-value="at the bottom center" checked><label class="form-check-label" for="letak_logo1">Tengah Bawah</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="radio" name="letak_logo" id="letak_logo2" value="di pojok kanan atas" data-english-value="at the top right corner"><label class="form-check-label" for="letak_logo2">Pojok Kanan Atas</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="radio" name="letak_logo" id="letak_logo3" value="di-emboss di cup" data-english-value="embossed on the cup"><label class="form-check-label" for="letak_logo3">Emboss di Cup</label></div>
+                                </div>
+                            </div>
+                            <!-- Tagline -->
+                             <div class="mb-4">
+                                <label for="tagline" class="form-label fw-bold">Custom Tagline:</label>
+                                <input type="text" class="form-control" id="tagline" placeholder="Contoh: Nikmati Setiap Seduhannya">
+                            </div>
+                            <!-- Harga -->
+                            <div class="mb-3">
+                                <label for="harga" class="form-label fw-bold">Custom Harga:</label>
+                                <input type="text" class="form-control" id="harga" placeholder="Contoh: Rp25.000 per botol 250ml">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Letak harga:</label>
+                                <div class="option-pills">
+                                    <div class="form-check"><input class="form-check-input" type="radio" name="letak_harga" id="letak_harga1" value="di pojok kanan bawah" data-english-value="at the bottom right corner" checked><label class="form-check-label" for="letak_harga1">Pojok Kanan Bawah</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="radio" name="letak_harga" id="letak_harga2" value="dalam bentuk stiker" data-english-value="as a sticker"><label class="form-check-label" for="letak_harga2">Stiker</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="radio" name="letak_harga" id="letak_harga3" value="di bawah produk" data-english-value="below the product"><label class="form-check-label" for="letak_harga3">Di Bawah Produk</label></div>
+                                </div>
+                            </div>
+                            <!-- Penjelasan -->
+                             <div>
+                                <label for="penjelasan" class="form-label fw-bold">Kalimat Penjelasan Produk:</label>
+                                <textarea class="form-control" id="penjelasan" rows="3" placeholder="Contoh: Manis alami dari gula aren berpadu dengan lembutnya kopi lokal."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Style & Mood Iklan -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                           10. ✨ Style & Mood Iklan
+                        </button>
+                    </h2>
+                    <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#promptAccordion">
+                        <div class="accordion-body option-pills">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="style_mood" id="style_mood1" value="Calm aesthetic" data-english-value="Calm aesthetic" checked><label class="form-check-label" for="style_mood1">Calm Aesthetic</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="style_mood" id="style_mood2" value="Bold commercial" data-english-value="Bold commercial"><label class="form-check-label" for="style_mood2">Bold Commercial</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="style_mood" id="style_mood3" value="Lifestyle candid" data-english-value="Lifestyle candid"><label class="form-check-label" for="style_mood3">Lifestyle Candid</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="style_mood" id="style_mood4" value="Premium luxury" data-english-value="Premium luxury"><label class="form-check-label" for="style_mood4">Premium Luxury</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="style_mood" id="style_mood5" value="Natural cozy" data-english-value="Natural cozy"><label class="form-check-label" for="style_mood5">Natural Cozy</label></div>
+                            <div class="form-check custom-input-group mt-2">
+                                <input class="form-check-input" type="radio" name="style_mood" id="style_mood_custom_radio" value="custom"><label class="form-check-label" for="style_mood_custom_radio">Lainnya:</label>
+                                <input type="text" class="form-control form-control-sm" id="style_mood_custom_text" placeholder="Custom Input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- end accordion -->
+
+            <!-- Generate Button -->
+            <div class="d-grid gap-3 mt-4">
+                <button type="button" class="btn btn-warning btn-lg" id="reset-button">🔄 Reset Pilihan</button>
+                <button type="submit" class="btn btn-primary btn-lg">🚀 Generate Prompt</button>
+            </div>
+        </form>
+
+        <!-- Result -->
+        <div id="result-container" class="mt-5" style="display: none;">
+            <h2 class="mb-3">✨ Hasil Prompt Anda ✨</h2>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-id-tab" data-bs-toggle="pill" data-bs-target="#pills-id" type="button" role="tab" aria-controls="pills-id" aria-selected="true">🇮🇩 Bahasa Indonesia</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-en-tab" data-bs-toggle="pill" data-bs-target="#pills-en" type="button" role="tab" aria-controls="pills-en" aria-selected="false">🇬🇧 Bahasa Inggris</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-id" role="tabpanel" aria-labelledby="pills-id-tab">
+                    <div class="position-relative">
+                        <textarea id="result-prompt-id" class="form-control" rows="12" readonly></textarea>
+                        <button id="copy-button-id" class="btn btn-secondary btn-sm position-absolute" style="top: 10px; right: 10px;">Salin</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-en" role="tabpanel" aria-labelledby="pills-en-tab">
+                     <div class="position-relative">
+                        <textarea id="result-prompt-en" class="form-control" rows="12" readonly></textarea>
+                        <button id="copy-button-en" class="btn btn-secondary btn-sm position-absolute" style="top: 10px; right: 10px;">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="text-center text-muted mt-5 mb-4">
+        <p>Dibuat dengan ❤️ oleh AI Assistant.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
